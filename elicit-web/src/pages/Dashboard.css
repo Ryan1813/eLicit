@@ -1,0 +1,403 @@
+/* Paleta do eLicit (mesma do login). Mude aqui para mudar o tema inteiro. */
+.dash {
+  --verde: #008751;
+  --verde-claro: #e6f4ed;
+  --cinza-escuro: #2c3e50;
+  --cinza-texto: #5b6470;
+  --cinza-borda: #e1e4e8;
+  --fundo: #f5f7f6;
+  --vermelho: #c0392b;
+  --vermelho-claro: #fdecea;
+
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--fundo);
+  color: var(--cinza-escuro);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  text-align: left;
+}
+
+/* ---------- Menu lateral ---------- */
+.dash-sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid var(--cinza-borda);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dash-logo {
+  background: var(--verde);
+  color: #ffffff;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.dash-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.dash-menu-item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--cinza-texto);
+  text-decoration: none;
+  font-weight: 500;
+}
+.dash-menu-item:hover {
+  background: var(--fundo);
+}
+.dash-menu-item.ativo {
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-weight: bold;
+}
+
+.dash-sair {
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 6px;
+  color: var(--cinza-escuro);
+  cursor: pointer;
+  font-weight: 500;
+}
+.dash-sair:hover {
+  background: var(--fundo);
+}
+
+/* ---------- Conteúdo ---------- */
+.dash-main {
+  flex: 1;
+  min-width: 0; /* permite a tabela rolar em vez de estourar a tela */
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.dash-header h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  color: var(--cinza-escuro);
+}
+.dash-header p {
+  margin: 0;
+  color: var(--cinza-texto);
+}
+
+.dash-alerta {
+  background: var(--vermelho-claro);
+  color: var(--vermelho);
+  border: 1px solid #f5c6c0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+/* ---------- Cards de resumo ---------- */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.dash-card {
+  background: #ffffff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dash-card-num {
+  font-size: 34px;
+  font-weight: bold;
+  color: var(--verde);
+}
+.dash-card.critico .dash-card-num {
+  color: var(--vermelho);
+}
+.dash-card-rotulo {
+  color: var(--cinza-texto);
+}
+
+/* ---------- Lista de licitações ---------- */
+.dash-lista {
+  background: #ffffff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.dash-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.dash-filtros input[type='text'] {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  background: #f7f7f7;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  outline: none;
+  color: var(--cinza-escuro);
+}
+.dash-filtros input[type='text']:focus {
+  border-color: var(--verde);
+}
+.dash-filtros label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cinza-texto);
+  cursor: pointer;
+}
+
+.dash-tabela-wrap {
+  overflow-x: auto;
+}
+.dash-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dash-tabela th {
+  text-align: left;
+  font-size: 13px;
+  color: var(--cinza-texto);
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+.dash-tabela td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--cinza-borda);
+  vertical-align: top;
+}
+.dash-tabela tr.encerrada {
+  opacity: 0.55;
+}
+.dash-tabela .orgao {
+  font-size: 13px;
+  color: var(--cinza-texto);
+  margin-top: 2px;
+}
+.dash-tabela .dias {
+  font-size: 13px;
+  color: var(--cinza-texto);
+  margin-top: 2px;
+}
+.dash-tabela .dias.critico {
+  color: var(--vermelho);
+  font-weight: bold;
+}
+.dash-tabela .vazio {
+  text-align: center;
+  color: var(--cinza-texto);
+  padding: 32px;
+}
+
+/* Botão de estrela (favoritar) */
+.estrela {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #b5bcc4;
+  padding: 0;
+}
+.estrela.ligada {
+  color: #f1a817;
+}
+.estrela:hover {
+  color: #f1a817;
+}
+
+/* Etiquetas de status. Para criar um novo status, copie um bloco abaixo. */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.badge-em-analise {
+  background: #eef1f4;
+  color: #4a5560;
+}
+.badge-em-revisao {
+  background: #fff4d6;
+  color: #8a6100;
+}
+.badge-pronta {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.badge-enviada {
+  background: #e3effc;
+  color: #1b5fa8;
+}
+
+/* ---------- Botões ---------- */
+.btn-primario,
+.btn-secundario {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-primario {
+  background: var(--verde);
+  color: #ffffff;
+  border: 1px solid var(--verde);
+}
+.btn-primario:hover {
+  background: #006e41;
+}
+.btn-secundario {
+  background: #ffffff;
+  color: var(--cinza-escuro);
+  border: 1px solid var(--cinza-borda);
+}
+.btn-secundario:hover {
+  background: var(--fundo);
+}
+
+/* ---------- Modal de nova licitação ---------- */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 40, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 10;
+}
+.modal-caixa {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+.modal-caixa h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: var(--cinza-escuro);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.campo label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cinza-texto);
+}
+.campo input,
+.campo textarea {
+  padding: 10px 12px;
+  background: #f7f7f7;
+  color: var(--cinza-escuro);
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+.campo textarea {
+  resize: vertical;
+}
+.campo input:focus,
+.campo textarea:focus {
+  border-color: var(--verde);
+}
+.campo-erro {
+  color: var(--vermelho);
+  font-size: 12px;
+}
+.campo-linha {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.campo-linha .campo {
+  min-width: 180px;
+}
+.campo-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cinza-texto);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 760px) {
+  .dash {
+    flex-direction: column;
+  }
+  .dash-sidebar {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--cinza-borda);
+    gap: 12px;
+  }
+  .dash-sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+    order: 3;
+  }
+  .dash-main {
+    padding: 20px 16px;
+  }
+}
